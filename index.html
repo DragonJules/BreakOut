@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+    <script src="app.js" defer></script>
+    <title>BreakOut</title>
+</head>
+<body>
+    <section>
+
+        <div id="startscreen">
+            <h1>
+                <strong>Break</strong>Out
+            </h1>
+
+            <h2 id="bestscore">
+                Best score: 0 pts
+            </h2>
+
+            <h3>
+                Click anywhere to start
+            </h3>
+        </div>
+
+
+
+
+        <div id="brick-container">
+            <div class="brick-column" id="column-0">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-1">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-2">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-3">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-4">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-5">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-6">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-7">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-8">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+            <div class="brick-column" id="column-9">
+                <div class="brick row-0 s1"></div>
+                <div class="brick row-1 s1"></div>
+                <div class="brick row-2 s1"></div>
+                <div class="brick row-3 s1"></div>
+                <div class="brick row-4 s1"></div>
+                <div class="brick row-5 s1"></div>
+                <div class="brick row-6 s1"></div>
+                <div class="brick row-7 s1"></div>
+            </div>
+        </div>
+
+
+        <div id="racket"></div>
+        <div id="ball"></div>
+    </section>
+
+    <footer>
+        <div id="score-container">
+            <p id="score">Score: 0 pts</p>
+
+            <p class="difficulty" id="difficulty">Difficulty : Normal</p>
+            <p class="difficulty">Change with Mouse Wheel</p>
+        </div>
+        
+        
+    </footer>
+</body>
+</html>
