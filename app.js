@@ -88,15 +88,12 @@ let rainbowed = false;
 function changeDifficulty(e) {
     let direction = e.deltaY * 0.01
     direction = direction > 0? 1: -1
-    console.log('direction:', direction)
 
 
     if((scrollValue < 4000 && direction > 0) || (scrollValue > 0 && direction < 0 && scrollValue!=1)){
         scrollValue += direction
         
     }
-    console.log(scrollValue, difficultyLevel)
-
 
     if((difficultyLevel > 0 && direction < 0) || (difficultyLevel < 2 && direction > 0)){        
         difficultyLevel += direction
@@ -585,11 +582,9 @@ class Racket {
                 this.lastPosition = this.position;
                 this.position = this.mousePos;
             }else if(this.mousePos < maxLeft){
-                console.log
                 this.lastPosition = this.position;
                 this.position = maxLeft;
             }else if(this.mousePos > maxRight){
-                console.log
                 this.lastPosition = this.position;
                 this.position = maxRight;
             }
