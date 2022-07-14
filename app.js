@@ -87,10 +87,19 @@ let rainbowed = false;
 
 function changeDifficulty(e) {
     let direction = e.deltaY * 0.01
+    direction = direction > 0? 1: -1
+    console.log('direction:', direction)
 
 
-    if((direction < 0 && difficultyLevel > 0) || (direction > 0 && difficultyLevel < 2)){        
-        difficultyLevel = difficultyLevel + direction
+    if((scrollValue < 4000 && direction > 0) || (scrollValue > 0 && direction < 0 && scrollValue!=1)){
+        scrollValue += direction
+        
+    }
+    console.log(scrollValue, difficultyLevel)
+
+
+    if((difficultyLevel > 0 && direction < 0) || (difficultyLevel < 2 && direction > 0)){        
+        difficultyLevel += direction
 
         difficulty = difficulties[difficultyLevel];
         pDifficulty.innerHTML = pDifficulty.innerHTML.substring(0, 13) + difficulty.name
@@ -102,9 +111,6 @@ function changeDifficulty(e) {
         hardestBricks = difficulty.firstHardestBricks;
     }   
 
-    if((scrollValue < 4000 && direction > 0) || (scrollValue > 0 && direction < 0)){
-        scrollValue = scrollValue + direction
-    }
     if(scrollValue == 4000){
         difficultyLevel = 3
 
@@ -323,6 +329,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*8 - brickHeight){
         row = 7
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*7){
@@ -330,6 +337,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*7 - brickHeight){
         row = 6
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*6){
@@ -337,6 +345,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*6 - brickHeight){
         row = 5
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*5){
@@ -344,6 +353,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*5 - brickHeight){
         row = 4
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*4){
@@ -351,6 +361,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*4 - brickHeight){
         row = 3
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*3){
@@ -358,6 +369,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*3 - brickHeight){
         row = 2
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*2){
@@ -365,6 +377,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement)*2 - brickHeight){
         row = 1
+        
     }
 
     if(y < brickYSpacement + (brickHeight + brickYSpacement)){
@@ -372,6 +385,7 @@ function findRow(y) {
     }
     if(y < brickYSpacement + (brickHeight + brickYSpacement) - brickHeight){
         row = 0
+        
     }
     
 
@@ -418,15 +432,15 @@ function destroyBrick(x, y){
 }
 
 function breakActualBrick(actualColumn, actualRow, velocityChanged) {
-    // if(actualRow){
-        ball.vy = - ball.vy    
+    
+    ball.vy = - ball.vy    
 
-        bricksState[actualColumn][actualRow] --
+    bricksState[actualColumn][actualRow] --
 
-        if(velocityChanged) destroyBrick(actualColumn, actualRow);
-        
-        if(bricksState[actualColumn][actualRow] == 0) increaseScore()
-    // }
+    if(velocityChanged) destroyBrick(actualColumn, actualRow);
+    
+    if(bricksState[actualColumn][actualRow] == 0) increaseScore()
+
 }
 
 
@@ -444,8 +458,8 @@ class Ball {
         this.actualColumn = actualColumn;
         this.actualRow = actualRow
 
-        this.configureddx = vx;
-        this.configureddy = vy;
+        this.configuredvx = vx;
+        this.configuredvy = vy;
 
         this.destroyed = false;
 
@@ -478,7 +492,7 @@ class Ball {
             
             //racket detection
             if (this.y + radius + this.vy - 4 > racketY && racketX - racketSize + 70 < this.x && this.x < racketX + racketSize - 60) {
-                this.vy = -Math.abs(this.configureddy);
+                this.vy = -Math.abs(this.configuredvy);
                 this.vx = this.vx;
 
                 if(racket.lastPosition - racket.position < 0){
@@ -502,7 +516,7 @@ class Ball {
                 }
 
                 if(racket.lastPosition - racket.position == 0){
-                    this.vx = this.configureddx;
+                    this.vx = this.configuredvx;
                 }
             } else {
                 this.vy += gravity;
@@ -523,7 +537,7 @@ class Ball {
             this.x += this.vx;
             this.y += this.vy;
 
-            this.vx += getRandomInt(-difficulty.randomXvelocity,difficulty.randomXvelocity) / 10;
+            this.vx += getRandomInt(-difficulty.randomXvelocity, difficulty.randomXvelocity) / 10;
 
             this.move();
 
@@ -560,12 +574,24 @@ class Racket {
         this.mousePos;
         this.destroyed = false
 
+        
+        let maxLeft = (100 * 32/width) + (100 * (racketSize/2.3)/width)
+        let maxRight = (100 * (width-32)/width) - (100 * (racketSize/4)/width)
+
         this.update = () => {
             if(this.destroyed) return
 
-            if(this.mousePos > 5 && this.mousePos < 97){
+            if(this.mousePos > maxLeft && this.mousePos < maxRight){
                 this.lastPosition = this.position;
                 this.position = this.mousePos;
+            }else if(this.mousePos < maxLeft){
+                console.log
+                this.lastPosition = this.position;
+                this.position = maxLeft;
+            }else if(this.mousePos > maxRight){
+                console.log
+                this.lastPosition = this.position;
+                this.position = maxRight;
             }
             
             this.move()
