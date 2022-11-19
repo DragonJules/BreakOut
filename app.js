@@ -90,7 +90,7 @@ function changeDifficulty(e) {
     direction = direction > 0? 1: -1
 
 
-    if((scrollValue < 4000 && direction > 0) || (scrollValue > 0 && direction < 0 && scrollValue!=1)){
+    if((scrollValue < 2000 && direction > 0) || (scrollValue > 0 && direction < 0 && scrollValue!=1)){
         scrollValue += direction
         
     }
